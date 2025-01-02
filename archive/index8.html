@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classifier using ML5.js</title>
+    <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #0056b3;
+            margin-bottom: 20px;
+        }
+
+        img {
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            margin: 20px 0;
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="file"] {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            background-color: #0056b3;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #004494;
+        }
+
+        #results {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9f4ff;
+            border: 1px solid #0056b3;
+            border-radius: 10px;
+            max-width: 400px;
+            text-align: left;
+            font-size: 1em;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Classification with ML5.js</h1>
+    <img src="" alt="Preview" id="image" width="315px" height="200px" />
+    <br>
+    <input type="file" accept="image/*" onchange="loadFile(event)" id="file" />
+    <br>
+    <button onclick="predict()">Predict</button>
+    <div id="results"></div>
+    <script>
+        const classifier = ml5.imageClassifier('MobileNet', () => console.log('Model Loaded'));
+
+        function loadFile(event) {
+            const image = document.getElementById('image');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        }
+
+        function predict() {
+            const image = document.getElementById('image');
+            if (!image.src) {
+                alert('Please upload an image first!');
+                return;
+            }
+            classifier.classify(image, (error, results) => {
+                if (error) {
+                    console.error(error);
+                    alert('Error during prediction.');
+                } else {
+                    const output = results.map(r => `Label: ${r.label}, Confidence: ${r.confidence.toFixed(2)}`).join('<br>');
+                    document.getElementById('results').innerHTML = output;
+                }
+            });
+        }
+    </script>
+</body>
+</html>

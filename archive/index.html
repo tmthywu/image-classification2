@@ -1,0 +1,37 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classifier using ML5 js</title>
+    <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+</head>
+
+<body>
+    <h1>Image Classification using Javascript</h1>
+    <img src="" alt="" id="image" width="315px" height="200px" />
+    <input type="file" accept="image/*" onchange="loadFile(event)" name="image" id="file" />
+    <button onclick="predict()">Predict</button>
+    <script>
+        const classifier = ml5.imageClassifier("darknet");
+
+        function loadFile(event) {
+            var image = document.getElementById("image");
+            image.src = URL.createObjectURL(event.target.files[0]);
+        }
+
+        function predict() {
+            classifier.classify(image, gotResult);
+        }
+
+        function gotResult(results) {
+            console.log(results)
+            for (let o of results) {
+                console.log("label: " + o.label);
+                console.log("confidence: " + o.confidence);
+            }
+        }
+    </script>
+</body>
+
+</html>

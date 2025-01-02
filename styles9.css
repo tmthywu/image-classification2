@@ -1,0 +1,102 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(#F9F9F8, #E5E6E4);
+    color: black;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+h1 {
+    color: #60a5fa;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+img {
+    border: 2px solid #9ca3af;
+    border-radius: 12px;
+    margin: 20px 0;
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.05);
+}
+
+input[type="file"] {
+    margin: 10px 0;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 2px solid #9ca3af;
+    border-radius: 12px;
+    background-color: #67a4c2;
+    color: #e5e7eb;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="file"]:hover {
+    background-color: #6497b1;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 12px;
+    background-color: #60a5fa;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#results {
+    margin-top: 20px;
+    background-color: #ededed;
+    border: 2px solid #9ca3af;
+    border-radius: 12px;
+    min-width: 333px;
+    max-width: 500px;
+    text-align: left;
+    font-size: 1rem;
+    color: #e5e7eb;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#results #output {
+    color: black;
+    margin: 0;
+    padding: 5px 10px;
+    line-height: 1.5;
+}
+
+#results button {
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 12px;
+    background-color: #60a5fa;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-left: 20px;
+}
+
+#results button:hover {
+    background-color: #3b82f6;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
